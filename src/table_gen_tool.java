@@ -1,11 +1,14 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class table_gen_tool {
 
-    private List<List<Integer>> goal_state = new ArrayList<>();
+    protected List<List<Integer>> goal_state = new ArrayList<>();
     public List<List<Integer>> start_state = new ArrayList<>();
     private List<List<Integer>> possible_options = new ArrayList<>();
+
     public void seStart_state(int[] listNumbers) {
         int rowSizeAdd = 0;
         for(int j = 0; j < 3; j++) {
@@ -102,8 +105,45 @@ public class table_gen_tool {
         System.out.println(this.possible_options);
     }
 
-    // List<List<Integer>>
+    public List<List<List<Integer>>> generateMoveMatrix(List<Integer> initCoordinate) {
+        List<List<List<Integer>>> possible_options_matrix = new ArrayList<>();
+        Integer initCoordinateY = initCoordinate.get(0);
+        Integer initCoordinateX = initCoordinate.get(1);
+        Integer initialValue = this.start_state.get(initCoordinateY).get(initCoordinateX);
 
+
+        for(List<Integer> possibleOption: this.possible_options) {
+            List<List<Integer>> matrix = new ArrayList<>();
+
+            this.copyState(this.start_state, matrix);
+            int possibleCoordinateY = possibleOption.get(0);
+            int possibleCoordinateX = possibleOption.get(1);
+            int possibleValue = this.start_state.get(possibleCoordinateY).get(possibleCoordinateX);
+
+            System.out.println(possibleValue);
+            matrix.get(possibleCoordinateY).set(possibleCoordinateX, initialValue);
+            matrix.get(initCoordinateY).set(initCoordinateX, possibleValue);
+
+            possible_options_matrix.add(matrix);
+            System.out.println("Size " + possible_options_matrix.size());
+        }
+        return possible_options_matrix;
+    }
+
+
+    private List<List<Integer>> copyState(List<List<Integer>> source, List<List<Integer>> destination) {
+        for (int i= 0; i <= 2; i++) {
+            List<Integer> sourceRow = source.get(i);
+            List<Integer> destinationRow = new ArrayList<>();
+            for(int j = 0; j <= 2; j++) {
+                int value = sourceRow.get(j);
+                destinationRow.add(value);
+            }
+            destination.add(destinationRow);
+        }
+
+        return destination;
+    }
 
 
 }
