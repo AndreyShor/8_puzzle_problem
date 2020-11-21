@@ -8,6 +8,7 @@ public class table_gen_tool {
     protected List<List<Integer>> goal_state = new ArrayList<>();
     protected List<List<Integer>> start_state = new ArrayList<>();
     protected List<List<Integer>> possible_options = new ArrayList<>();
+    private Integer qualityFactor;
 
     public void start_state(int[] listNumbers) {
         int rowSizeAdd = 0;
@@ -143,6 +144,27 @@ public class table_gen_tool {
         }
 
         return destination;
+    }
+
+    protected boolean checkTableEquality(List<List<Integer>> matrix1, List<List<Integer>> matrix2) {
+        this.qualityFactor = 0;
+        for (int i = 0; i <= 2; i++) {
+            List<Integer> startRow = matrix1.get(i);
+            List<Integer> goalRow = matrix2.get(i);
+            for (int j = 0; j <= 2; j++) {
+                int valueStartCompare = startRow.get(j);
+                int valueGoalCompare = goalRow.get(j);
+
+                if (valueStartCompare == valueGoalCompare) {
+                    qualityFactor += 1;
+                }
+            }
+        }
+        if (this.qualityFactor == 9) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
