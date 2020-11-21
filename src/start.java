@@ -5,7 +5,7 @@ public class start {
         AI test = new AI();
         System.out.println("Start state");
         int[] startState = {1, 2, 3, 4, 5, 6, 7, 0, 8};
-        test.seStart_state(startState);
+        test.start_state(startState);
         System.out.println("Goal State");
         test.setGoal_state();
         List<Integer> reultSearech = test.findXYCourser(test.start_state);
@@ -17,5 +17,9 @@ public class start {
         System.out.println("Possible move:");
         System.out.println(test.generateMoveMatrix(reultSearech));
         test.calcHeuristicValue(test.start_state);
+
+        Object[] moveCost= new Object[2];
+
+        System.out.println(moveCost[0]);
     }
 }

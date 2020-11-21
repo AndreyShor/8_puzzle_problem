@@ -6,10 +6,10 @@ import java.util.List;
 public class table_gen_tool {
 
     protected List<List<Integer>> goal_state = new ArrayList<>();
-    public List<List<Integer>> start_state = new ArrayList<>();
-    private List<List<Integer>> possible_options = new ArrayList<>();
+    protected List<List<Integer>> start_state = new ArrayList<>();
+    protected List<List<Integer>> possible_options = new ArrayList<>();
 
-    public void seStart_state(int[] listNumbers) {
+    public void start_state(int[] listNumbers) {
         int rowSizeAdd = 0;
         for(int j = 0; j < 3; j++) {
             List<Integer> row = new ArrayList<Integer>();
@@ -131,7 +131,7 @@ public class table_gen_tool {
     }
 
 
-    private List<List<Integer>> copyState(List<List<Integer>> source, List<List<Integer>> destination) {
+    public List<List<Integer>> copyState(List<List<Integer>> source, List<List<Integer>> destination) {
         for (int i= 0; i <= 2; i++) {
             List<Integer> sourceRow = source.get(i);
             List<Integer> destinationRow = new ArrayList<>();
@@ -144,6 +144,7 @@ public class table_gen_tool {
 
         return destination;
     }
+
 
 
 }
