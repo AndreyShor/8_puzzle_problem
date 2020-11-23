@@ -19,7 +19,6 @@ public class table_gen_tool {
             }
             rowSizeAdd = rowSizeAdd + 3;
             this.start_state.add(row);
-            System.out.println(row);
         }
     }
 
@@ -36,7 +35,6 @@ public class table_gen_tool {
             }
             rowSizeAdd = rowSizeAdd + 3;
             this.goal_state.add(row);
-            System.out.println(row);
         }
     }
 
@@ -53,7 +51,6 @@ public class table_gen_tool {
             for (int i = 0; i < 3; i++) {
                 int valueTofind = row.get(i);
                 if(valueTofind == 0) {
-                    System.out.println("Y value is " + j + " X value is " + i);
                     coordiateResulte.add(j);
                     coordiateResulte.add(i);
                     break;
@@ -64,7 +61,6 @@ public class table_gen_tool {
     }
 
     public void genPossibleXY(List<Integer> position) {
-        System.out.println(position);
         int valueY = position.get(0);
         int valueYmin = valueY - 1;
         int valueYmax = valueY + 1;
@@ -103,7 +99,6 @@ public class table_gen_tool {
             this.possible_options.add(possible_option);
         }
 
-        System.out.println(this.possible_options);
     }
 
     public List<List<List<Integer>>> generateMoveMatrix(List<Integer> initCoordinate) {
@@ -121,12 +116,10 @@ public class table_gen_tool {
             int possibleCoordinateX = possibleOption.get(1);
             int possibleValue = this.start_state.get(possibleCoordinateY).get(possibleCoordinateX);
 
-            System.out.println(possibleValue);
             matrix.get(possibleCoordinateY).set(possibleCoordinateX, initialValue);
             matrix.get(initCoordinateY).set(initCoordinateX, possibleValue);
 
             possible_options_matrix.add(matrix);
-            System.out.println("Size " + possible_options_matrix.size());
         }
         return possible_options_matrix;
     }
@@ -164,6 +157,18 @@ public class table_gen_tool {
             return true;
         } else {
             return false;
+        }
+    }
+
+    protected void rewriteStart_state(List<List<Integer>> source) {
+        for (int i= 0; i <= 2; i++) {
+            List<Integer> sourceRow = source.get(i);
+            List<Integer> destinationRow = this.start_state.get(i);
+            for(int j = 0; j <= 2; j++) {
+                int value = sourceRow.get(j);
+                destinationRow.set(j, value);
+            }
+            this.start_state.set(i, destinationRow);
         }
     }
 
