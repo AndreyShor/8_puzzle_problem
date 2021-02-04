@@ -1,26 +1,34 @@
+import java.util.Arrays;
 import java.util.List;
 
 public class start {
     public static void main(String[] args) {
-        AI test = new AI();
-        System.out.println("Start state");
-        int[] startState = {8, 3, 5, 4, 1, 6, 2, 7, 0};
-//        test.start_state(startState);
-//        System.out.println("Goal State");
-//        test.setGoal_state();
-//        List<Integer> reultSearech = test.findXYCourser(test.start_state);
-//        System.out.println("Y value is " + reultSearech.get(0));
-//        System.out.println("X value is " + reultSearech.get(1));
-//        test.genPossibleXY(reultSearech);
-//
-//        test.generateMoveMatrix(reultSearech);
-//        System.out.println("Possible move:");
-//        System.out.println(test.generateMoveMatrix(reultSearech));
-//        test.calcHeuristicValue(test.start_state);
-//
-//        Object[] moveCost= new Object[2];
-//
-//        System.out.println(moveCost[0]);
-        test.A_algorithm(startState);
+
+        // Change value here to start program
+//        int[] startState = {5, 1, 3, 0, 2, 6, 4, 7, 8};
+////        test.A_algorithm(startState);
+//        test_2.a_algorithm(startState);
+
+//        int[][] startState = { {1, 2, 5}, {0, 8, 3}, {7, 4, 6}};
+        int[][] startState = { {6, 4, 2}, {5, 7, 3}, {0, 1, 8}};
+        Board board = new Board(startState);
+
+//        for(Board move: moves) {
+//            System.out.println(" ");
+//            System.out.println("Possible move => ");
+//            move.printBoard();
+//            System.out.println("Move heuristic: " + move.totalHeuristic);
+//            System.out.println(" ");
+//        }
+
+        puzzleGameFinder puzzle = new puzzleGameFinder();
+        puzzle.aStarFinder(startState);
+        puzzle.printExpandedListSize();
+        puzzle.printUnexpandedListSize();
+
+//        puzzle.printUnexpandedList();
+//        puzzle.printExpandedList();
+
+
     }
 }
